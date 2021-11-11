@@ -1,114 +1,53 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BillPayment.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BillPayment.Domain.Models;
 using FakeItEasy;
+using Microsoft.Extensions.Logging;
+using BillPayment.Interfaces.Repository;
 
 namespace BillPayment.Helpers.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class BillCalculatorTests
     {
         [TestMethod()]
-        [Timeout(1500)]
-        public void GetBillTest()
-        { 
-            var userDetails = new User
+        public void GetBillTestAs()
+        {
+            // Arrange
+            ILogger<BillCalculator> _logger = null;
+
+            var fakeStore = A.Fake<IBillerRepository>();
+            A.CallTo(() => fakeStore.GetDiscountRules);
+            A.CallTo(() => fakeStore.GetUsers);
+            A.CallTo(() => fakeStore.GetItems);
+
+            var userDetails = new User { Id = 1 };
+
+            var cartItem = new List<CartItem>();
+
+            cartItem.Add(new CartItem { Item = 1, Quantity = 2 });
+            cartItem.Add(new CartItem { Item = 2, Quantity = 4 });
+            cartItem.Add(new CartItem { Item = 4, Quantity = 8 });
+
+            var cart = new Cart
             {
-                Id = 1,
-                Name = "Kofi",
-                UserTypeID = 1,
-                MembershipDate = DateTime.Now
+                User = userDetails.Id,
+                CartItem = cartItem.ToArray()
             };
 
-            var invoice = new Invoice();
-            var myCart = new Cart();
 
-            myCart.User = userDetails.Id;
-
-            // Fake User Discount rule
-            var fakeDiscountRule = A.CollectionOfDummy<DiscountRule>(4).AsEnumerable();
-
-            /*
-             if(userDiscountRule.Count() > 1)
-            {
-                int memDuration = (user.UserTypeID == 3) ? GetMemberDuration(user.MembershipDate) : 0;
+            // Act
+            var _billCalculator = new BillCalculator(fakeStore, _logger);
+            var returnResult = _billCalculator.GetBill(cart);
+            var newInvoice = new Invoice();
 
 
-                if (memDuration >= 24)
-                {
-                    var customerRule = userDiscountRule.FirstOrDefault(d => d.DiscountTypeId == 2);
-                    invoice = GetPercentageDicountBill(PrepItems(cart.CartItem), customerRule);
-                    invoice.User = user;
-                }
-                else
-                {
-                    var customerRule = userDiscountRule.FirstOrDefault(d => d.DiscountTypeId == 1);
-                    invoice = GetCashDiscountBill(PrepItems(cart.CartItem), customerRule);
-                    invoice.User = user;
-                }
-
-                return invoice;
-            }
-
-            var ruleType = userDiscountRule.FirstOrDefault();
-
-            if (ruleType == null)
-                return invoice;
-
-            switch (ruleType.DiscountTypeId)
-            {
-                case 2:
-                    invoice = GetPercentageDicountBill(PrepItems(cart.CartItem), ruleType);
-                    break;
-                case 1:
-                    invoice = GetCashDiscountBill(PrepItems(cart.CartItem), ruleType);
-                    break;
-            }
-
-            invoice.User = user;
-            return invoice;
-             
-             
-             */
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        [Timeout(500)]
-        public void GetPercentageDicountBill()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        [Timeout(500)]
-        public void GetCashDiscountBill()
-        {
-
-        }
-
-        [TestMethod]
-        [Timeout(500)]
-        private void GetMemberDuration()
-        {
-            /*int yearDuration = DateTime.Now.Year - membershipDate.Year;
-            int monthDuration = DateTime.Now.Month - membershipDate.Month;
-
-            return (yearDuration * 12) + monthDuration;*/
-
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        [Timeout(500)]
-        private void PrepItems()
-        {
-            Assert.Fail();
+            // Assert
+            Assert.IsNotNull(returnResult);
+            Assert.AreSame(returnResult, newInvoice);
+            Assert.AreEqual(returnResult.User.Id, userDetails.Id);
+            Assert.AreEqual(returnResult.PrepItems.Count, cartItem.Count);
+            Assert.IsTrue(returnResult.TotalAmount > 0);
         }
     }
 }

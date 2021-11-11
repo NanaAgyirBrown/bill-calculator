@@ -1,12 +1,9 @@
 using BillPayment.Controllers;
-using BillPayment.Data.Logic;
-using BillPayment.Data.Validations;
 using BillPayment.Domain;
 using BillPayment.Domain.Models;
 using BillPayment.Helpers;
 using BillPayment.Interfaces.Repository;
 using FakeItEasy;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

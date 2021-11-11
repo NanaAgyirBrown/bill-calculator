@@ -251,7 +251,7 @@ namespace BillPayment.Controllers
             try
             {         
                 if (message.Count > 0)
-                    return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, null);
+                    return await _responses.GetResponse(OperationActions.Failed, BillerStatus.Fetched, message, null);
 
                 // Calculator
                 var calculatedBill = _billCalculator.GetBill(cart);

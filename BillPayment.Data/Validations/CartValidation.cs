@@ -15,12 +15,10 @@ namespace BillPayment.Data.Validations
             _logger = logger;
 
             RuleFor(cart => cart.User)
-                .NotEmpty().WithMessage("{PropertyName} can not be empty or null.")
-                .NotNull().WithMessage("{PropertyName} can not be empty or null.");
+                .NotEmpty().NotNull().WithMessage("{PropertyName} can not be empty or null.");
 
             RuleFor(cart => cart.CartItem)
-                .NotEmpty().WithMessage("{PropertyName} can not be null or empty.")
-                .NotNull().WithMessage("{PropertyName} can not be null or empty.");
+                .NotEmpty().NotNull().WithMessage("{PropertyName} can not be null or empty.");
         }
 
         public BindingList<string> validateObject(Cart cart)

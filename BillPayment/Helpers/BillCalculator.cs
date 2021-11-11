@@ -120,8 +120,14 @@ namespace BillPayment.Helpers
         {
             List<PrepItems> preppedItems = new List<PrepItems>();
 
+            if (cartItem == null || cartItem.Count() == 0)
+                return preppedItems;
+
             foreach (var item in cartItem)
             {
+                if(item.Item == 0)
+                    return null;
+
                 var newItem = _billerRepository.GetItems.FirstOrDefault(i => i.Id == item.Item);
 
                 preppedItems.Add(new PrepItems
