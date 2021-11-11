@@ -24,8 +24,8 @@ namespace BillPayment.Data.Validations
                 .NotNull().WithMessage("{PropertyName} can not be empty or null.")
                 .MinimumLength(3).WithMessage("{PropertyName} must be at least 3 characters long.").WithName("Item Name");
 
-            RuleFor(item => item.Category)
-                .IsInEnum().WithMessage("Invalid Category name. Please select from the Category list.");
+            RuleFor(item => item.CategoryId)
+                .NotNull().NotEmpty().WithMessage("Invalid Item Category type. Please select from the Category list.");
 
             RuleFor(asset => asset.UnitPrice)
                 .NotEmpty().WithMessage("{PropertyName} can not be null or empty.")

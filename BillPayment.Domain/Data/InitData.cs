@@ -10,13 +10,11 @@ namespace BillPayment.Domain.Data
     {
         public static void Initialize(BillerContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            context.Database.EnsureCreated();
 
-            if (context.Items.Any())
+            if (context.ItemsCategories.Any())
             {
+                context.Database.EnsureDeleted();
                 // There are items already stored
                 return;
             }
@@ -25,118 +23,17 @@ namespace BillPayment.Domain.Data
                 new Models.ItemsCategory
                 {
                     Id = 1,
-                    Category = "Groceries"
+                    Category = "Grocery"
                 },
                 new Models.ItemsCategory
                 {
                     Id = 2,
-                    Category = "Electronics"
+                    Category = "Electronic"
                 }
             );
 
-            context.Items.AddRange(
-                new Models.Items
-                {
-                    Id = 1,
-                    Category = Models.ItemCategory.Electronics,
-                    ItemName = "Television",
-                    UnitPrice = 125.00m
-                },
-                new Models.Items
-                {
-                    Id = 2,
-                    Category = Models.ItemCategory.Electronics,
-                    ItemName = "Laptop",
-                    UnitPrice = 1845.00m
-                },
-                new Models.Items
-                {
-                    Id = 3,
-                    Category = Models.ItemCategory.Groceries,
-                    ItemName = "Apples",
-                    UnitPrice = 1.50m
-                },
-                new Models.Items
-                {
-                    Id = 4,
-                    Category = Models.ItemCategory.Groceries,
-                    ItemName = "Mangoes",
-                    UnitPrice = 1.75m
-                },
-                new Models.Items
-                {
-                    Id = 5,
-                    Category = Models.ItemCategory.Electronics,
-                    ItemName = "Phone",
-                    UnitPrice = 85.00m
-                },
-                new Models.Items
-                {
-                    Id = 6,
-                    Category = Models.ItemCategory.Groceries,
-                    ItemName = "Sugar",
-                    UnitPrice = 0.75m
-                },
-                new Models.Items
-                {
-                    Id = 7,
-                    Category = Models.ItemCategory.Groceries,
-                    ItemName = "Milk",
-                    UnitPrice = 0.92m
-                },
-                new Models.Items
-                {
-                    Id = 8,
-                    Category = Models.ItemCategory.Electronics,
-                    ItemName = "Fan",
-                    UnitPrice = 15.50m
-                },
-                new Models.Items
-                {
-                    Id = 9,
-                    Category = Models.ItemCategory.Groceries,
-                    ItemName = "Rice cooker",
-                    UnitPrice = 42.00m
-                },
-                new Models.Items
-                {
-                    Id = 10,
-                    Category = Models.ItemCategory.Electronics,
-                    ItemName = "Lamp",
-                    UnitPrice = 5.20m
-                }
-            );
+            context.SaveChanges();
 
-            context.Users.AddRange(
-                new Models.User
-                {
-                    Id = 1,
-                    Name = "Kofi Mensah",
-                    UserType = Models.UserType.Employee,
-                    MembershipDate = DateTime.Parse("4/21/2017"),
-                },
-                new Models.User
-                {
-                    Id = 2,
-                    Name = "Yaa Mansa",
-                    UserType = Models.UserType.Affliate,
-                    MembershipDate = DateTime.Parse("10/10/2020"),
-                },
-                new Models.User
-                {
-                    Id = 3,
-                    Name = "Musa Ishameal",
-                    UserType = Models.UserType.Customer,
-                    MembershipDate = DateTime.Now,
-                },
-                new Models.User
-                {
-                    Id = 4,
-                    Name = "Lettu Shangrila",
-                    UserType = Models.UserType.Customer,
-                    MembershipDate = DateTime.Parse("1/21/2010"),
-                }
-            );
 
             context.UserTypes.AddRange(
                 new Models.UserTypes
@@ -155,53 +52,18 @@ namespace BillPayment.Domain.Data
                     UserType = "Customer"
                 }
             );
-
-
-            context.Discounts.AddRange(
-                new Models.DiscountRule
-                {
-                    Id = Guid.NewGuid(),
-                    UserType = Models.UserType.Employee,
-                    DiscountType = Models.DiscountType.Percentage,
-                    DiscountValue = 30.00m,
-                    RuleAppliesTo = Models.RuleApplication.Electronics,
-                },
-                new Models.DiscountRule
-                {
-                    Id = Guid.NewGuid(),
-                    UserType = Models.UserType.Affliate,
-                    DiscountType = Models.DiscountType.Percentage,
-                    DiscountValue = 10.00m,
-                    RuleAppliesTo = Models.RuleApplication.Electronics,
-                },
-                new Models.DiscountRule
-                {
-                    Id = Guid.NewGuid(),
-                    UserType = Models.UserType.Customer,
-                    DiscountType = Models.DiscountType.Percentage,
-                    DiscountValue = 5.00m,
-                    RuleAppliesTo = Models.RuleApplication.Electronics,
-                },
-                new Models.DiscountRule
-                {
-                    Id = Guid.NewGuid(),
-                    UserType = Models.UserType.Customer,
-                    DiscountType = Models.DiscountType.Cash,
-                    DiscountValue = 5.00m,
-                    RuleAppliesTo = Models.RuleApplication.All,
-                }
-            );
+            context.SaveChanges();
 
             context.RulesAppliesTo.AddRange(
                 new Models.RulesApplies
                 {
                     Id = 1,
-                    ApplyTo = "Groceries"
+                    ApplyTo = "Grocery"
                 },
                 new Models.RulesApplies
                 {
                     Id = 2,
-                    ApplyTo = "Electronics"
+                    ApplyTo = "Electronic"
                 },
                 new Models.RulesApplies
                 {
@@ -209,6 +71,8 @@ namespace BillPayment.Domain.Data
                     ApplyTo = "All"
                 }
             );
+
+            context.SaveChanges();
 
             context.DiscountsType.AddRange(
                 new Models.DiscountsType
@@ -224,6 +88,150 @@ namespace BillPayment.Domain.Data
             );
 
             context.SaveChanges();
+
+            context.Items.AddRange(
+                new Models.Items
+                {
+                    Id = 1,
+                    CategoryId = 2,
+                    ItemName = "Television",
+                    UnitPrice = 125.00m
+                },
+                new Models.Items
+                {
+                    Id = 2,
+                    CategoryId = 2,
+                    ItemName = "Laptop",
+                    UnitPrice = 1845.00m
+                },
+                new Models.Items
+                {
+                    Id = 3,
+                    CategoryId = 1,
+                    ItemName = "Apples",
+                    UnitPrice = 1.50m
+                },
+                new Models.Items
+                {
+                    Id = 4,
+                    CategoryId = 1,
+                    ItemName = "Mangoes",
+                    UnitPrice = 1.75m
+                },
+                new Models.Items
+                {
+                    Id = 5,
+                    CategoryId = 2,
+                    ItemName = "Phone",
+                    UnitPrice = 85.00m
+                },
+                new Models.Items
+                {
+                    Id = 6,
+                    CategoryId = 1,
+                    ItemName = "Sugar",
+                    UnitPrice = 0.75m
+                },
+                new Models.Items
+                {
+                    Id = 7,
+                    CategoryId = 1,
+                    ItemName = "Milk",
+                    UnitPrice = 0.92m
+                },
+                new Models.Items
+                {
+                    Id = 8,
+                    CategoryId = 2,
+                    ItemName = "Fan",
+                    UnitPrice = 15.50m
+                },
+                new Models.Items
+                {
+                    Id = 9,
+                    CategoryId = 2,
+                    ItemName = "Rice cooker",
+                    UnitPrice = 42.00m
+                },
+                new Models.Items
+                {
+                    Id = 10,
+                    CategoryId = 2,
+                    ItemName = "Lamp",
+                    UnitPrice = 5.20m
+                }
+            );
+
+            context.SaveChanges();
+
+            context.Users.AddRange(
+                new Models.User
+                {
+                    Id = 1,
+                    Name = "Kofi Mensah",
+                    UserTypeID = context.UserTypes.Find(1).Id,
+                    MembershipDate = DateTime.Parse("4/21/2017"),
+                },
+                new Models.User
+                {
+                    Id = 2,
+                    Name = "Yaa Mansa",
+                    UserTypeID = context.UserTypes.Find(3).Id,
+                    MembershipDate = DateTime.Parse("10/10/2020"),
+                },
+                new Models.User
+                {
+                    Id = 3,
+                    Name = "Musa Ishameal",
+                    UserTypeID = context.UserTypes.Find(2).Id,
+                    MembershipDate = DateTime.Now,
+                },
+                new Models.User
+                {
+                    Id = 4,
+                    Name = "Lettu Shangrila",
+                    UserTypeID = context.UserTypes.Find(3).Id,
+                    MembershipDate = DateTime.Parse("1/21/2010"),
+                }
+            );
+            context.SaveChanges();
+
+            context.Discounts.AddRange(
+                new Models.DiscountRule
+                {
+                    Id = Guid.NewGuid(),
+                    UserTypeId = context.UserTypes.Find(1).Id,
+                    DiscountTypeId = context.DiscountsType.Find(2).Id,
+                    DiscountValue = 30.00m,
+                    RuleAppliesToId = context.RulesAppliesTo.Find(2).Id,
+                },
+                new Models.DiscountRule
+                {
+                    Id = Guid.NewGuid(),
+                    UserTypeId = context.UserTypes.Find(2).Id,
+                    DiscountTypeId = context.DiscountsType.Find(2).Id,
+                    DiscountValue = 10.00m,
+                    RuleAppliesToId = context.RulesAppliesTo.Find(2).Id,
+                },
+                new Models.DiscountRule
+                {
+                    Id = Guid.NewGuid(),
+                    UserTypeId = context.UserTypes.Find(3).Id,
+                    DiscountTypeId = context.DiscountsType.Find(2).Id,
+                    DiscountValue = 5.00m,
+                    RuleAppliesToId = context.RulesAppliesTo.Find(2).Id,
+                },
+                new Models.DiscountRule
+                {
+                    Id = Guid.NewGuid(),
+                    UserTypeId = context.UserTypes.Find(3).Id,
+                    DiscountTypeId = context.DiscountsType.Find(1).Id,
+                    DiscountValue = 5.00m,
+                    RuleAppliesToId = context.RulesAppliesTo.Find(3).Id,
+                }
+            );
+
+            context.SaveChanges();           
 
         }
     }

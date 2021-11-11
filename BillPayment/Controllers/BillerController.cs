@@ -18,7 +18,6 @@ namespace BillPayment.Controllers
 
         // Logger
         private readonly ILogger<BillerController> _logger;
-        private readonly ILogger<BillCalculator> _logCal;
 
         // Instance
         private readonly ItemValidation _validateItem;
@@ -47,7 +46,7 @@ namespace BillPayment.Controllers
         /// ItemReponses
         /// </returns>
         [HttpGet("GetItemCategories")]
-        public ApiResponse GetCategory()
+        public async Task<ApiResponse> GetCategory()
         {
             _logger.LogInformation("Retrieving category for items.....");
             var message = new BindingList<string>();
@@ -60,12 +59,12 @@ namespace BillPayment.Controllers
                     message.Add("No category available. Add items");
 
                 message.Add("Category attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, category);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, category);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -76,7 +75,7 @@ namespace BillPayment.Controllers
         /// ItemReponses
         /// </returns>
         [HttpGet("GetShopItems")]
-        public ApiResponse GetItems()
+        public async Task<ApiResponse> GetItems()
         {
             _logger.LogInformation("Retrieving list of shop items.....");
             var message = new BindingList<string>();
@@ -89,12 +88,12 @@ namespace BillPayment.Controllers
                     message.Add("No items available. Add items");
 
                 message.Add("Shop items attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, items);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, items);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -103,7 +102,7 @@ namespace BillPayment.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetUserTypes")]
-        public ApiResponse GetUserType()
+        public async Task<ApiResponse> GetUserType()
         {
             _logger.LogInformation("Retrieving list of user types..........");
             var message = new BindingList<string>();
@@ -116,12 +115,12 @@ namespace BillPayment.Controllers
                     message.Add("No users types available.");
 
                 message.Add("User types list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, usersTypes);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, usersTypes);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -132,7 +131,7 @@ namespace BillPayment.Controllers
         /// ApiResponse
         /// </returns>
         [HttpGet("GetRulesAppliesTo")]
-        public ApiResponse GetRuleApplies()
+        public async Task<ApiResponse> GetRuleApplies()
         {
             _logger.LogInformation("Retrieving discount types..........");
             var message = new BindingList<string>();
@@ -145,12 +144,12 @@ namespace BillPayment.Controllers
                     message.Add("No discount application rule found.");
 
                 message.Add("Discount Rules list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountApplies);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountApplies);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -161,7 +160,7 @@ namespace BillPayment.Controllers
         /// ApiResponse
         /// </returns>
         [HttpGet("GetDiscountTypes")]
-        public ApiResponse GetDiscountTypes()
+        public async Task<ApiResponse> GetDiscountTypes()
         {
             _logger.LogInformation("Retrieving discount types..........");
             var message = new BindingList<string>();
@@ -174,12 +173,12 @@ namespace BillPayment.Controllers
                     message.Add("No discount types found.");
 
                 message.Add("Discount Rules list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountTypes);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountTypes);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -191,7 +190,7 @@ namespace BillPayment.Controllers
         /// ApiResponse
         /// </returns>
         [HttpGet("GetDiscounts")]
-        public ApiResponse GetDiscountRules()
+        public async Task<ApiResponse> GetDiscountRules()
         {
             _logger.LogInformation("Retrieving discount rules..........");
             var message = new BindingList<string>();
@@ -204,12 +203,12 @@ namespace BillPayment.Controllers
                     message.Add("No discount rules found.");
 
                 message.Add("Discount Rules list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountRules);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, discountRules);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
 
@@ -218,7 +217,7 @@ namespace BillPayment.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetShopUsers")]
-        public ApiResponse GetUsers()
+        public async Task<ApiResponse> GetUsers()
         {
             _logger.LogInformation("Retrieving list of registered users..........");
             var message = new BindingList<string>();
@@ -232,19 +231,19 @@ namespace BillPayment.Controllers
 
 
                 message.Add("User list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, users);
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, users);
             }
             catch (Exception ex)
             {
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
 
         }
 
 
         [HttpPost("ShopingCart")]
-        public ApiResponse MyShopingCart([FromBody] Cart cart)
+        public async Task<ApiResponse> MyShopingCart([FromBody]Cart cart)
         {
             _logger.LogWarning("Validating User's Cart....");
             var message = _validateCart.validateObject(cart);
@@ -252,19 +251,26 @@ namespace BillPayment.Controllers
             try
             {         
                 if (message.Count > 0)
-                    return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, null);
+                    return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, null);
 
                 // Calculator
                 var calculatedBill = _billCalculator.GetBill(cart);
+                
+                if (calculatedBill is null || calculatedBill.BillId == Guid.Empty)
+                {
+                    message.Add("Invoice could not be calculated.");
+                    return await _responses.GetResponse(OperationActions.Failed, BillerStatus.Fetched, message, calculatedBill);
+                }
+                    
 
-                message.Add("User list attached");
-                return _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, null);
+                message.Add("Invoice attached.");
+                return await _responses.GetResponse(OperationActions.Success, BillerStatus.Fetched, message, calculatedBill);
             }
             catch (Exception ex)
             {
 
                 message.Add($"{ "Server Error "} : { ex.Message } ");
-                return _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
+                return await _responses.GetResponse(OperationActions.Exception, BillerStatus.Crashed, message, null);
             }
         }
     }

@@ -12,41 +12,12 @@ namespace BillPayment.Domain.Models
         [Key]
         public Guid Id { get; set; }
         [Required]
-        public UserType UserType { get; set; }
+        public int UserTypeId { get; set; }
         [Required]
-        public DiscountType DiscountType { get; set; }
+        public int DiscountTypeId { get; set; }
         [Required]
         public decimal DiscountValue { get; set; }
         [Required]
-        public RuleApplication RuleAppliesTo { get; set; }
-    }
-
-    public enum DiscountType
-    {
-        Cash = 1,
-        Percentage
-    }
-
-    public enum RuleApplication
-    {
-        Groceries = 1,
-        Electronics,
-        All
-    }
-
-    public class DiscountsType
-    {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-    }
-
-    public class RulesApplies
-    {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string ApplyTo { get; set; }
+        public int RuleAppliesToId { get; set; }     
     }
 }

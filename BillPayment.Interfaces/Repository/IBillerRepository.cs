@@ -4,7 +4,7 @@ namespace BillPayment.Interfaces.Repository
 {
     public interface IBillerRepository
     {
-        public IQueryable<UserTypes> GetUserTypes { get; }
+        public IEnumerable<UserTypes> GetUserTypes { get; }
         public IQueryable<DiscountRule> GetDiscountRules { get; }
         public IQueryable<Bill> GetBill { get; }
         public IQueryable<User> GetUsers { get; }

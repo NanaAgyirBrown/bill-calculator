@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 
 namespace BillPayment.Domain.Models
 {
-    public class ItemsCategory
+    public class RulesApplies
     {
-        public ItemsCategory()
-        {
-            this.Items = new HashSet<Items>();
-        }
-
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Category { get; set; }
-        public ICollection<Items> Items { get; set; } = new List<Items>();
+        public string ApplyTo { get; set; }
+
+        public ICollection<DiscountRule> DiscountRules { get; set; } = new List<DiscountRule>();
     }
 }

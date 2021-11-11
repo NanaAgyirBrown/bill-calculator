@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace BillPayment.Domain.Models
 {
-    public record struct Cart
+    public class Cart
     {
-        [Key]
-        private Guid Id {  get; set; }
         [Required]
-        public Guid User { get; set; }  
+        public int User { get; set; }  
         [Required]
-        public CartItem[]? CartItem { get; set; }
+        public CartItem[] CartItem { get; set; }
         
     }
 

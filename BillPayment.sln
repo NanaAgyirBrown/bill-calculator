@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31815.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayment", "BillPayment\BillPayment.csproj", "{6FE42538-32A9-440A-8914-5C5C94E35735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillPayment", "BillPayment\BillPayment.csproj", "{6FE42538-32A9-440A-8914-5C5C94E35735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayment.Data", "BillPayment.Data\BillPayment.Data.csproj", "{F1A49ECE-3083-4E48-8226-D82E35F82D20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillPayment.Data", "BillPayment.Data\BillPayment.Data.csproj", "{F1A49ECE-3083-4E48-8226-D82E35F82D20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayment.Domain", "BillPayment.Domain\BillPayment.Domain.csproj", "{5261D41B-2FF5-4375-B4A3-A7583ABB3844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillPayment.Domain", "BillPayment.Domain\BillPayment.Domain.csproj", "{5261D41B-2FF5-4375-B4A3-A7583ABB3844}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayment.Interfaces", "BillPayment.Interfaces\BillPayment.Interfaces.csproj", "{E181305A-A26E-47A2-9C53-A9A89851AA08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillPayment.Interfaces", "BillPayment.Interfaces\BillPayment.Interfaces.csproj", "{E181305A-A26E-47A2-9C53-A9A89851AA08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPaymentTests", "BillPaymentTests\BillPaymentTests.csproj", "{33E2EECC-A0EE-413E-8E54-4BB7AEACDD53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPaymentControllers.Test", "BillPaymentControllers\BillPaymentControllers.Test.csproj", "{264D8973-30CD-4DB0-80E8-4F3622E13FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{E181305A-A26E-47A2-9C53-A9A89851AA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E181305A-A26E-47A2-9C53-A9A89851AA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E181305A-A26E-47A2-9C53-A9A89851AA08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E2EECC-A0EE-413E-8E54-4BB7AEACDD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E2EECC-A0EE-413E-8E54-4BB7AEACDD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E2EECC-A0EE-413E-8E54-4BB7AEACDD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E2EECC-A0EE-413E-8E54-4BB7AEACDD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264D8973-30CD-4DB0-80E8-4F3622E13FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264D8973-30CD-4DB0-80E8-4F3622E13FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264D8973-30CD-4DB0-80E8-4F3622E13FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264D8973-30CD-4DB0-80E8-4F3622E13FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,7 @@ namespace BillPayment.Domain.Models
         [Required]
         public string ItemName { get; set; }
         [Required]
-        public ItemCategory Category { get; set; }
+        public int CategoryId { get; set;}
         [Required]
         public Decimal UnitPrice { get; set; }
     }

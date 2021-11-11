@@ -16,7 +16,7 @@ namespace BillPayment.Domain
         public bool IsSuccessful { get; set; } = false;
         public bool HasError { get; set; } = false;
         public bool HasException { get; set; } = false;
-        public IEnumerable<Object> Data { get; set; }
+        public Object Data { get; set; }
         public ServerErrorResponse ErrorPayload { get; set; }
     }
 

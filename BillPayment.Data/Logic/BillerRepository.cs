@@ -22,7 +22,7 @@ namespace BillPayment.Data.Logic
 
         public IQueryable<Items> GetItems => _db.Items;
 
-        public IQueryable<UserTypes> GetUserTypes => _db.UserTypes;
+        public IEnumerable<UserTypes> GetUserTypes => _db.UserTypes;
 
         public IQueryable<DiscountRule> GetDiscountRules => _db.Discounts;
 

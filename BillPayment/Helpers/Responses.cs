@@ -7,7 +7,7 @@ namespace BillPayment.Helpers
 {
     public class Responses
     {
-        public ApiResponse GetResponse(OperationActions action, HttpStatusCode StatusCode, BindingList<string> Message,IEnumerable<Object> ResponseData)
+        public async Task<ApiResponse> GetResponse(OperationActions action, HttpStatusCode StatusCode, BindingList<string> Message,Object ResponseData)
         {
             return action switch
             {

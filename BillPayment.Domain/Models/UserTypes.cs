@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace BillPayment.Domain.Models
 {
-    public enum UserType
-    {
-        Employee = 1,
-        Affliate,
-        Customer        
-    }
-
     public class UserTypes
     {
+        public UserTypes()
+        {
+            Users = new HashSet<User>();
+            DiscountRules = new HashSet<DiscountRule>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
         public string? UserType { get; set; }
+
+        public ICollection<User> Users { get; set; }  
+        public ICollection<DiscountRule> DiscountRules { get; set;  } = new List<DiscountRule>();
     }
 }

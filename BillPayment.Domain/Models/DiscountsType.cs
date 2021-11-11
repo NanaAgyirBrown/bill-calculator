@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 
 namespace BillPayment.Domain.Models
 {
-    public class User
+    public class DiscountsType
     {
         [Key]
-        public int Id {  get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int UserTypeID { get; set; }
-        [Required]
-        public DateTime MembershipDate { get; set; }
 
-        public ICollection<Bill> Bills { get; set; } = new List<Bill>();
+        public ICollection<DiscountRule> DiscountRules { get; set; } = new List<DiscountRule>();
     }
 }

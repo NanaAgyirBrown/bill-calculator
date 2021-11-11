@@ -21,8 +21,8 @@ namespace BillPayment.Data.Validations
                 .NotNull().WithMessage("{PropertyName} can not be empty or null.")
                 .MinimumLength(5).WithMessage("{PropertyName} must be at least 3 characters long.").WithName("User Name");
 
-            RuleFor(user => user.UserType)
-                .IsInEnum().WithMessage("Invalid User Type name. Please select from the User Type list.");
+            RuleFor(user => user.UserTypeID)
+                .NotEmpty().NotNull().WithMessage("Invalid User Type name. Please select from the User Type list.");
 
             RuleFor(user => user.MembershipDate)
                 .NotEmpty().WithMessage("{PropertyName} can not be null or empty.")
