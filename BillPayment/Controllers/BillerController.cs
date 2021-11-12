@@ -241,8 +241,11 @@ namespace BillPayment.Controllers
 
         }
 
-
-        [HttpPost("ShopingCart")]
+        /// <summary>
+        /// Generates an invoice based on the Discount rule applied to the User type assigned to a user and also the Category of Items purchased 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("ShoppingCart")]
         public async Task<ApiResponse> MyShopingCart([FromBody]Cart cart)
         {
             _logger.LogWarning("Validating User's Cart....");

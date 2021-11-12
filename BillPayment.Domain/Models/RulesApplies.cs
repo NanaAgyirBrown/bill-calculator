@@ -9,6 +9,11 @@ namespace BillPayment.Domain.Models
 {
     public class RulesApplies
     {
+        public RulesApplies()
+        {
+            DiscountRules = new HashSet<DiscountRule>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
