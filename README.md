@@ -39,6 +39,7 @@
  >  * Example
  
 ***
+```json
  {
   "user": 1,
   "cartItem": [
@@ -68,11 +69,12 @@
     }
   ]
  }
- 
+ ```
 ***
  > * Response Body
 
 ***
+```json
  {
   "isSuccessful": true,
   "hasError": false,
@@ -153,7 +155,7 @@
     "message": null
   }
  }
-
+```
 ***
 
  ### UML, Test & Code Coverage Resources (Included)
