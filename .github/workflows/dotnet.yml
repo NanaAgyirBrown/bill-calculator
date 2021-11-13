@@ -32,3 +32,12 @@ jobs:
         username: ${{ Secrets.DOCKER_USERNAME }}
         password: ${{ Secrets.DOCKER_PASSWORD }}
         dockerfile: ./BillPayment/Dockerfile
+    - name: Azure Pipelines Action
+      uses: Azure/pipelines@v1.1
+      with:
+        # Fullyqualified URL to the Azure DevOps organization along with project name(eg, https://dev.azure.com/organization/project-name or https://server.example.com:8080/tfs/DefaultCollection/project-name)
+        azure-devops-project-url: https://dev.azure.com/thinkaigh/BillCalculator
+        # Name of the Azure Pipline to be triggered
+        azure-pipeline-name: BillCalculator-ASP.NET Core-CI
+        # Paste personal access token of the user as value of secret variable:AZURE_DEVOPS_TOKEN
+        azure-devops-token: ${{ Secrets.Azure_Pipeline_DevOps }}
