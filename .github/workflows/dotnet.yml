@@ -27,7 +27,7 @@ jobs:
     - uses: elgohr/Publish-Docker-Github-Action@master
       with: 
         name: thinkai/billerCalculator
-        username: ${{ secrets.Docker_Username }}
-        password: ${{ secrets.Docker_Password }}
+        username: ${{ SECRETS.DOCKER_USERNAME }}
+        password: ${{ SECRETS.DOCKER_PASSWORD }}
         dockerfile: Dockerfile
       
