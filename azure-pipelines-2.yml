@@ -28,12 +28,6 @@ steps:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
-- script: dotnet test <test-project> --logger trx
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
