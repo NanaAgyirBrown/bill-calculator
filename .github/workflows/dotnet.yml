@@ -24,9 +24,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Build and Push Docker Image
+      if: success()
       uses: elgohr/Publish-Docker-Github-Action@master
       with: 
         name: thinkai/billerCalculator
         registry: docker.io
-        username: ${{ Secrets.DOCKER_USERNAME }}
-        password: ${{ Secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        dockerfile: ./BillPayment/Dockerfile
