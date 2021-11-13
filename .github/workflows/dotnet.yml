@@ -29,6 +29,6 @@ jobs:
       with: 
         name: thinkai/billerCalculator
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ Secrets.DOCKER_USERNAME }}
+        password: ${{ Secrets.DOCKER_PASSWORD }}
         dockerfile: ./BillPayment/Dockerfile
