@@ -21,7 +21,7 @@
 
  ### Usage
  The solution can be run:-
- > * As a docker image by downloading the latest image from the [Discount Biller - Docker Image](https://hub.docker.com/repository/docker/thinkai/biller)
+ > * As a docker image by downloading the latest image from the [Discount Biller - Docker Image](https://hub.docker.com/r/thinkai/billercalculator)
  > * Or by building the image from the Dockerfile included in this project
 
 ***
