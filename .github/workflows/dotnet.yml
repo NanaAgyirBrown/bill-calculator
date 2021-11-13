@@ -29,5 +29,4 @@ jobs:
         name: thinkai/billerCalculator
         username: ${{ SECRETS.DOCKER_USERNAME }}
         password: ${{ SECRETS.DOCKER_PASSWORD }}
-        dockerfile: Dockerfile
       
